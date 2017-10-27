@@ -1,17 +1,24 @@
 import os
 from os.path import isfile, isdir, join
 
+
+def strip_quotes(word):
+    return word.strip("\"").strip("\'").strip("‘").strip("’").strip("“").strip("”")
+
+
 file_formats = ['webm', 'mkv', 'flv', 'vob', 'ogv', 'ogg', 'drc', 'gifv', 'mng', 'avi', 'mov', 'qt', 'wmv', 'yuv', 'rm',
                 'rmvb', 'asf', 'amv', 'mp4', 'm4p', 'm4v', 'mpg', 'mp2', 'mpe', 'mpv', 'mpeg', 'm2v', 'svi', '3gp',
                 '3g2', 'mxf', 'roq', 'nsv', 'f4v', 'f4p', 'f4a', 'f4b', 'wma', 'mka', 'mks', 'divx', 'm2p', 'ps',
                 'm2ts']
 
-folder_path = input("Enter a folder path: ").strip("\"").strip("\'").strip("‘").strip("’").strip("“").strip("”")
+
+folder_path = strip_quotes(input("Enter a folder path: "))
 good_ans = isdir(folder_path)
 while not good_ans:
     print("Folder path not valid, try again...")
-    folder_path = input("Enter a folder path: ").strip("\"").strip("\'").strip("‘").strip("’").strip("“").strip("”")
+    folder_path = strip_quotes(input("Enter a folder path: "))
     good_ans = isdir(folder_path)
+
 
 print("Movie path set:", folder_path, "\n\n")
 movie_folders = []
@@ -47,6 +54,7 @@ for movie_folder in movie_folders:
     if len(movie_file_list) > 1:
         multi_folder[join(folder_path, movie_folder)] = movie_file_list
 print("FOLDERS WITH MORE THAN ONE MEDIA FILE:")
+
 for key, data in multi_folder.items():
     print("\"" + key + "\"")
     for x in data:
