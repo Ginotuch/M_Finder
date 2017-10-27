@@ -37,9 +37,18 @@ for movie in non_folder_movies:
     print("\"" + join(folder_path, movie) + "\"" + is_sample(movie))
 print()
 
+multi_folder = {}
 for movie_folder in movie_folders:
     movie_file_list = []
-    for folder_path, folder_names, file_names in os.walk(join(folder_path, movie_folder)):
+    for full_folder, folder_names, file_names in os.walk(join(folder_path, movie_folder)):
         for a in file_names:
             if a.split('.')[-1] in file_formats:
-                movie_file_list.append(join(folder_path, a))
+                movie_file_list.append(a)
+    if len(movie_file_list) > 1:
+        multi_folder[join(folder_path, movie_folder)] = movie_file_list
+print("FOLDERS WITH MORE THAN ONE MEDIA FILE:")
+for key, data in multi_folder.items():
+    print("\"" + key + "\"")
+    for x in data:
+        print("- \"" + x + "\"", is_sample(x))
+    print()
