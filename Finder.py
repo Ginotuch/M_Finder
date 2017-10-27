@@ -53,7 +53,7 @@ for movie_folder in movie_folders:
                 movie_file_list.append(a)
     if len(movie_file_list) > 1:
         multi_folder[join(folder_path, movie_folder)] = movie_file_list
-print("FOLDERS WITH MORE THAN ONE MEDIA FILE:")
+print("\nFOLDERS WITH MORE THAN ONE MEDIA FILE:")
 
 for key, data in multi_folder.items():
     print("\"" + key + "\"")
