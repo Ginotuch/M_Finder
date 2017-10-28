@@ -1,5 +1,6 @@
 import os
 from os.path import isfile, isdir, join
+from sys import argv
 
 
 def strip_quotes(word):
@@ -11,15 +12,15 @@ file_formats = ['webm', 'mkv', 'flv', 'vob', 'ogv', 'ogg', 'drc', 'gifv', 'mng',
                 '3g2', 'mxf', 'roq', 'nsv', 'f4v', 'f4p', 'f4a', 'f4b', 'wma', 'mka', 'mks', 'divx', 'm2p', 'ps',
                 'm2ts']
 
+if len(argv) > 2:
+    print("Unexpected number of arguments found", len(argv) - 1, "expected 1")
+    exit(1)
 
-folder_path = strip_quotes(input("Enter a folder path: "))
-good_ans = isdir(folder_path)
-while not good_ans:
-    print("Folder path not valid, try again...")
-    folder_path = strip_quotes(input("Enter a folder path: "))
-    good_ans = isdir(folder_path)
+elif len(argv) < 2:
+    print("Not enough arguments")
+    exit(1)
 
-
+folder_path = argv[1]
 print("Movie path set:", folder_path, "\n\n")
 movie_folders = []
 
