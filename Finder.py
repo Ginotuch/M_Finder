@@ -14,10 +14,12 @@ file_formats = ['webm', 'mkv', 'flv', 'vob', 'ogv', 'ogg', 'drc', 'gifv', 'mng',
 
 if len(argv) > 2:
     print("Unexpected number of arguments found", len(argv) - 1, "expected 1")
+    print("Usage: Finder.py <FOLDER_PATH>")
     exit(1)
 
 elif len(argv) < 2:
     print("Not enough arguments")
+    print("Usage: Finder.py <FOLDER_PATH>")
     exit(1)
 
 folder_path = argv[1]
