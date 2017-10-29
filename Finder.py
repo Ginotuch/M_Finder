@@ -29,7 +29,7 @@ non_folder_movies = []
 for x in os.listdir(folder_path):
     if isdir(join(folder_path, x)):
         movie_folders.append(x)
-    elif isfile(join(folder_path, x)):
+    elif isfile(join(folder_path, x)) and x.split('.')[-1] in file_formats:
         non_folder_movies.append(x)
 
 
