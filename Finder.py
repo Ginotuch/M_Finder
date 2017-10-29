@@ -36,14 +36,9 @@ for x in os.listdir(folder_path):
 def is_sample(filename):
     text = ""
     if "sample" in filename.lower():
-        text = "  \033[93mSAMPLE\x1b[0m"
+        text = "  SAMPLE"
     return text
 
-
-print("MOVIES WITH NO PARENT FOLDERS:")
-for movie in non_folder_movies:
-    print("\"" + join(folder_path, movie) + "\"" + is_sample(movie))
-print()
 
 multi_folder = {}
 for movie_folder in movie_folders:
@@ -54,10 +49,25 @@ for movie_folder in movie_folders:
                 movie_file_list.append(a)
     if len(movie_file_list) > 1:
         multi_folder[join(folder_path, movie_folder)] = movie_file_list
+
+print("MOVIES WITH NO PARENT FOLDERS:")
+longest_movie = 0
+for movie in non_folder_movies:
+    if len("\"" + join(folder_path, movie) + "\"") > longest_movie:
+        longest_movie = len("\"" + join(folder_path, movie) + "\"")
+for movie in non_folder_movies:
+    movie_text = "\"" + join(folder_path, movie) + "\""
+    print(movie_text + (" " * (longest_movie - len(movie_text))) + "  " + is_sample(movie))
+print()
+
 print("\nFOLDERS WITH MORE THAN ONE MEDIA FILE:")
 
 for key, data in multi_folder.items():
     print("\"" + key + "\"")
+    longest_x = 0
     for x in data:
-        print("- \"" + x + "\"", is_sample(x))
+        if len("- \"" + x + "\"") > longest_x:
+            longest_x = len("- \"" + x + "\"")
+    for x in data:
+        print("- \"" + x + "\"" + (" " * (longest_x - len("- \"" + x + "\""))) + "  " + is_sample(x))
     print()
