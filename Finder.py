@@ -41,6 +41,7 @@ def is_sample(filename):
 
 
 multi_folder = {}
+empty_folders = []
 for movie_folder in movie_folders:
     movie_file_list = []
     for full_folder, folder_names, file_names in os.walk(join(folder_path, movie_folder)):
@@ -49,6 +50,9 @@ for movie_folder in movie_folders:
                 movie_file_list.append(a)
     if len(movie_file_list) > 1:
         multi_folder[join(folder_path, movie_folder)] = movie_file_list
+    elif len(movie_file_list) < 1:
+        empty_folders.append(join(folder_path, movie_folder))
+
 
 print("MOVIES WITH NO PARENT FOLDERS:")
 longest_movie = 0
@@ -60,8 +64,8 @@ for movie in non_folder_movies:
     print(movie_text + (" " * (longest_movie - len(movie_text))) + "  " + is_sample(movie))
 print()
 
-print("\nFOLDERS WITH MORE THAN ONE MEDIA FILE:")
 
+print("\nFOLDERS WITH MORE THAN ONE MEDIA FILE:")
 for key, data in multi_folder.items():
     print("\"" + key + "\"")
     longest_x = 0
@@ -71,3 +75,8 @@ for key, data in multi_folder.items():
     for x in data:
         print("- \"" + x + "\"" + (" " * (longest_x - len("- \"" + x + "\""))) + "  " + is_sample(x))
     print()
+
+
+print("\nFOLDERS WITH NO MEDIA FILES IN THEM:")
+for folder in empty_folders:
+    print("- \"" + folder + "\"")
