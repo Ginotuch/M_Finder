@@ -21,6 +21,10 @@ elif len(argv) < 2:
     print("Usage: Finder.py <FOLDER_PATH>")
     exit(1)
 
+elif argv[1].lower() in ["--help", "-h", "-help", "-?", "/?", "/h", "help"]:
+    print("Usage: Finder.py <FOLDER_PATH>")
+    exit(1)
+
 folder_path = argv[1]
 print("Movie path set:", folder_path, "\n\n")
 movie_folders = []
