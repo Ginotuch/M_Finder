@@ -54,7 +54,6 @@ for movie_folder in movie_folders:
     elif len(movie_file_list) < 1:
         empty_folders.append(os.path.join(folder_path, movie_folder))
 
-
 print("MOVIES WITH NO PARENT FOLDERS:")
 longest_movie = 0
 for movie in non_folder_movies:
@@ -64,7 +63,6 @@ for movie in non_folder_movies:
     movie_text = "\"" + os.path.join(folder_path, movie) + "\""
     print(movie_text + (" " * (longest_movie - len(movie_text))) + "  " + is_sample(movie))
 print()
-
 
 print("\nFOLDERS WITH MORE THAN ONE MEDIA FILE:")
 for key, data in multi_folder.items():
@@ -76,7 +74,6 @@ for key, data in multi_folder.items():
     for x in data:
         print("- \"" + x + "\"" + (" " * (longest_x - len("- \"" + x + "\""))) + "  " + is_sample(x))
     print()
-
 
 print("\nFOLDERS WITH NO MEDIA FILES IN THEM:")
 for folder in empty_folders:
