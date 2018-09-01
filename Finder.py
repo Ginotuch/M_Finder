@@ -30,7 +30,7 @@ non_folder_movies = []
 for x in os.listdir(folder_path):
     if os.path.isdir(os.path.join(folder_path, x)):
         movie_folders.append(x)
-    elif os.path.isfile(os.path.join(folder_path, x)) and x.split('.')[-1] in file_formats:
+    elif os.path.isfile(os.path.join(folder_path, x)) and x.split('.')[-1].lower() in file_formats:
         non_folder_movies.append(x)
 
 
@@ -47,7 +47,7 @@ for movie_folder in movie_folders:
     movie_file_list = []
     for full_folder, folder_names, file_names in os.walk(os.path.join(folder_path, movie_folder)):
         for a in file_names:
-            if a.split('.')[-1] in file_formats:
+            if a.split('.')[-1].lower() in file_formats:
                 movie_file_list.append(a)
     if len(movie_file_list) > 1:
         multi_folder[os.path.join(folder_path, movie_folder)] = movie_file_list
